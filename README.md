@@ -46,7 +46,7 @@ Next configuration will install and configure KairosDB to use chef provided cass
       "cluster_name": "cass_cluster_test"
     },
     "config": {
-      "service.datastore": "org.kairosdb.datastore.cassandra.CassandraModule"
+      "kairosdb.service.datastore": "org.kairosdb.datastore.cassandra.CassandraModule"
     }
   }
 }
