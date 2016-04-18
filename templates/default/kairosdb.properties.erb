@@ -1,0 +1,4 @@
+<% @config.each do |property,value| %>
+<%= "#{property}=#{value}" unless value.nil? %>
+<% end %>
+
