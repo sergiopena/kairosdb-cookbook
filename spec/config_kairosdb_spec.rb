@@ -16,7 +16,6 @@
 # limitations under the License.
 
 require 'spec_helper'
-require 'pry'
 
 describe 'kairosdb::config_kairosdb' do
 
