@@ -16,27 +16,30 @@
 # limitations under the License.
 
 require 'spec_helper'
+require 'pry'
 
 describe 'kairosdb::config_kairosdb' do
 
-    let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
+    let(:chef_run) { ChefSpec::SoloRunner.new }
 
     it 'renders kairosdb configuration file' do
+        chef_run.converge(described_recipe)
+
         expect(chef_run).to create_template('/opt/kairosdb/conf/kairosdb.properties').with( :source => 'kairosdb.properties.erb') 
     end
 
     it 'changes default attributes values' do
-        chef_run.node.set['kairosdb']['config']['jetty.port']="8888"
+        chef_run.node.set['kairosdb']['config']['kairosdb.jetty.port']="8888"
         chef_run.converge(described_recipe)
 
-        expect(chef_run).to render_file('/opt/kairosdb/conf/kairosdb.properties').with_content('jetty.port=8888')
+        expect(chef_run).to render_file('/opt/kairosdb/conf/kairosdb.properties').with_content('kairosdb.jetty.port=8888')
     end
 
     it 'removes default attributes when set to ""' do
-        chef_run.node.set['kairosdb']['config']['jetty.port']=''
+        chef_run.node.set['kairosdb']['config']['kairosdb.jetty.port']=''
         chef_run.converge(described_recipe)
 
-        expect(chef_run).not_to render_file('/opt/kairosdb/conf/kairosdb.properties').with_content('jetty.port')
+        expect(chef_run).not_to render_file('/opt/kairosdb/conf/kairosdb.properties').with_content('kairosdb.jetty.port')
     end
 
     it 'adds new properties passed as attributes to the configuration file' do
