@@ -18,7 +18,7 @@ Recipes
 The cookbook contains the following recipes:
 * `recipe[kairosdb]` - Install and configures KairosDB
 * `recipe[kariosdb::install_kairosdb]` - Download and installs KairosDB package.
-* `recipe[kairosdb::setup_kairosdb]` - Configure kairos.properties file
+* `recipe[kairosdb::config_kairosdb]` - Configure kairos.properties file
 
 Attributes
 ----------

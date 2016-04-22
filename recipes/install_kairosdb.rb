@@ -17,22 +17,24 @@
 
 case node['platform_family']
 when 'rhel', 'redhat', 'centos', 'amazon', 'scientific', 'oracle'
-  kairosdb_package = "kairosdb-#{node['kairosdb']['version']}-#{node['kairosdb']['release']}.rpm" 
-  kairosdb_url = "https://github.com/kairosdb/kairosdb/releases/download/v#{node['kairosdb']['version']}/#{kairosdb_package}"
+	kairosdb_package = "kairosdb-#{node['kairosdb']['version']}-#{node['kairosdb']['release']}.rpm" 
+	kairosdb_url = "https://github.com/kairosdb/kairosdb/releases/download/v#{node['kairosdb']['version']}/#{kairosdb_package}"
 when 'ubuntu', 'debian' 
-  kairosdb_package = "kairosdb-#{node['kairosdb']['version']}-#{node['kairosdb']['release']}_all.deb"
-  kairosdb_url = "https://github.com/kairosdb/kairosdb/releases/download/v#{node['kairosdb']['version']}/#{kairosdb_package}"
+	kairosdb_package = "kairosdb-#{node['kairosdb']['version']}-#{node['kairosdb']['release']}_all.deb"
+	kairosdb_url = "https://github.com/kairosdb/kairosdb/releases/download/v#{node['kairosdb']['version']}/#{kairosdb_package}"
+else 
+	Chef::Application.fatal!("Unsupported platform family")
 end
 
 remote_file 'package' do
-    path lazy { "#{Chef::Config[:file_cache_path]}/#{kairosdb_package}" }
-    source lazy { kairosdb_url }
+	path lazy { "#{Chef::Config[:file_cache_path]}/#{kairosdb_package}" }
+	source lazy { kairosdb_url }
 end
 
 package "kairosdb" do
-    source lazy { "#{Chef::Config[:file_cache_path]}/#{kairosdb_package}" }
+	source lazy { "#{Chef::Config[:file_cache_path]}/#{kairosdb_package}" }
 end
 
 service "kairosdb" do
-    action [:enable, :start]
+	action [:enable, :start]
 end
