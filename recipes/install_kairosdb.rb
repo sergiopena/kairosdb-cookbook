@@ -23,7 +23,7 @@ when 'ubuntu', 'debian'
 	kairosdb_package = "kairosdb-#{node['kairosdb']['version']}-#{node['kairosdb']['release']}_all.deb"
 	kairosdb_url = "https://github.com/kairosdb/kairosdb/releases/download/v#{node['kairosdb']['version']}/#{kairosdb_package}"
 else 
-	Chef::Application.fatal!("Unsupported platform family")
+	raise("Unsupported platform family")
 end
 
 remote_file 'package' do
