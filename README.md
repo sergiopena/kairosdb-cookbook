@@ -5,13 +5,11 @@ This cookbook provides two recipes to install and configure a KairosDB service. 
 Requirements
 ------------
 * CentOS >= 6.7
-* Ubuntu > ?
+* Ubuntu > 14.04
 
 This cookbook dependes on the following cookbooks:
 
 * java
-* yum ?
-* apt ?
 
 Recipes
 ----------
