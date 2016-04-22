@@ -15,10 +15,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "kairosdb::install_kairosdb"
-
 # Check if autodiscover cassandra cluster is enabled
 node.default['kairosdb']['config']['kairosdb.datastore.cassandra.host_list']=discover_cassandra_seed_nodes if node['kairosdb']['cassandra_seed_discovery']
+
+service "kairosdb" do
+	action :nothing
+end
 
 template '/opt/kairosdb/conf/kairosdb.properties' do
   source 'kairosdb.properties.erb'
