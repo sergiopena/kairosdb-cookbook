@@ -29,7 +29,7 @@ when 'rhel', 'redhat', 'centos', 'amazon', 'scientific', 'oracle'
 		source "#{Chef::Config[:file_cache_path]}/#{kairosdb_package}"
 	end
 when 'ubuntu', 'debian' 
-	kairosdb_package = "kairosdb-#{node['kairosdb']['version']}-#{node['kairosdb']['release']}_all.deb"
+	kairosdb_package = "kairosdb_#{node['kairosdb']['version']}-#{node['kairosdb']['release']}_all.deb"
 	kairosdb_url = "https://github.com/kairosdb/kairosdb/releases/download/v#{node['kairosdb']['version']}/#{kairosdb_package}"
 
 		remote_file 'package' do
@@ -37,7 +37,7 @@ when 'ubuntu', 'debian'
 		source kairosdb_url
 	end
 
-	package 'kairosdb' do
+	dpkg_package 'kairosdb' do
 		source "#{Chef::Config[:file_cache_path]}/#{kairosdb_package}"
 	end
 

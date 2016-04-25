@@ -53,7 +53,7 @@ describe 'kairosdb::install_kairosdb' do
     context 'Ubuntu 14.04' do
         let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
 
-        let(:pkg) { "kairosdb-#{chef_run.node['kairosdb']['version']}-#{chef_run.node['kairosdb']['release']}_all.deb" }
+        let(:pkg) { "kairosdb_#{chef_run.node['kairosdb']['version']}-#{chef_run.node['kairosdb']['release']}_all.deb" }
         let(:url) { "https://github.com/kairosdb/kairosdb/releases/download/v#{chef_run.node['kairosdb']['version']}/#{pkg}" }
 
         it 'downloads the kairosdb package' do
@@ -65,7 +65,7 @@ describe 'kairosdb::install_kairosdb' do
         it 'installs the kairosdb package' do
             chef_run.converge(described_recipe)
 
-            expect(chef_run).to install_package('kairosdb').with({ :source => "#{Chef::Config[:file_cache_path]}/#{pkg}" })
+            expect(chef_run).to install_dpkg_package('kairosdb').with({ :source => "#{Chef::Config[:file_cache_path]}/#{pkg}" })
         end
 
         it 'enables the kairosdb service' do
