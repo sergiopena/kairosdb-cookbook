@@ -3,7 +3,5 @@ cache: bundler
 rvm:
   - 2.1.1
 bundler_args: --without integration
-before_script:
-  - bundle exec berks
 script:
   - bundle exec rake
