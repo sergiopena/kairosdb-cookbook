@@ -2,9 +2,9 @@ language: ruby
 cache: bundler
 rvm:
   - 2.2.0
+before_install: gem install bundler
 bundler_args: --without integration
 before_script:
-  - gem install bundler
   - bundle exec berks
 script:
   - bundle exec rake
