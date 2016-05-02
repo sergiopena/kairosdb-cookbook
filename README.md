@@ -1,15 +1,16 @@
 Kairosdb Cookbook
 =================
+
+[![Build Status](https://travis-ci.org/sergiopena/kairosdb-cookbook.svg?branch=master)](https://travis-ci.org/sergiopena/kairosdb-cookbook)
+[![KairosDB Cookbook](http://img.shields.io/badge/cookbook-v0.1.1-blue.svg?style=flat)](https://supermarket.chef.io/cookbooks/abiquo)
+[![Chef Version](http://img.shields.io/badge/chef-v12.9.38-orange.svg?style=flat)](https://www.chef.io)
+
 This cookbook provides two recipes to install and configure a KairosDB service. It allows to configure the service and in case of using cassandra cluster as backend provisioned with cassandra-dse cookbook obtains cassandra nodes address from chef server
 
 Requirements
 ------------
 * CentOS >= 6.7
 * Ubuntu > 14.04
-
-This cookbook dependes on the following cookbooks:
-
-* java
 
 Recipes
 ----------

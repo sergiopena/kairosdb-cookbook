@@ -41,6 +41,9 @@ when 'ubuntu', 'debian'
 		source "#{Chef::Config[:file_cache_path]}/#{kairosdb_package}"
 	end
 
+	package 'default-jre' do
+    	action :install
+    end
 else 
 	raise("Unsupported platform family")
 end
